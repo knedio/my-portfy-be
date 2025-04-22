@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\ContactController;
 use App\Http\Resources\UserResource;
 
 // public Routes
@@ -13,6 +14,9 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/templates', [TemplateController::class, 'index']);
 Route::get('/templates/{id}', [TemplateController::class, 'show']);
+
+Route::post('/contact', [ContactController::class, 'send']);
+
 
 // protected Routes
 Route::middleware('auth:sanctum')->group(function () {
