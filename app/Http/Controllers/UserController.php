@@ -89,4 +89,26 @@ class UserController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function updatePassword(Request $request)
+    {
+        $validated = $request->validate([
+            'currentPassword' => ['required'],
+            'newPassword' => ['required', 'min:8'],
+            'confirmPassword' => ['required', 'same:newPassword'],
+        ]);
+
+        if (!Hash::check($validated['currentPassword'], $request->user()->password)) {
+            return response()->json([
+                'message' => 'The current password is incorrect.',
+            ], 422);
+        }
+
+        $request->user()->update([
+            'password' => Hash::make($validated['newPassword']),
+        ]);
+
+        return response()->json(['message' => 'Password updated successfully']);
+    }
+
 }
