@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Helpers\CryptoHelper;
 
 class UserController extends Controller
 {
@@ -92,20 +93,44 @@ class UserController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $validated = $request->validate([
+        logger([
+            'currentPassword_encrypted' => $request->input('currentPassword'),
+            'newPassword_encrypted' => $request->input('newPassword'),
+            'confirmPassword_encrypted' => $request->input('confirmPassword'),
+        ]);
+
+        $currentPassword = CryptoHelper::decryptAES($request->input('currentPassword'));
+        $newPassword = CryptoHelper::decryptAES($request->input('newPassword'));
+        $confirmPassword = CryptoHelper::decryptAES($request->input('confirmPassword'));
+
+        logger([
+            'currentPassword_decrypted' => $currentPassword,
+            'newPassword_decrypted' => $newPassword,
+            'confirmPassword_decrypted' => $confirmPassword,
+        ]);
+
+        $validator = Validator::make([
+            'currentPassword' => $currentPassword,
+            'newPassword' => $newPassword,
+            'confirmPassword' => $confirmPassword,
+        ], [
             'currentPassword' => ['required'],
             'newPassword' => ['required', 'min:8'],
             'confirmPassword' => ['required', 'same:newPassword'],
         ]);
 
-        if (!Hash::check($validated['currentPassword'], $request->user()->password)) {
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        if (!Hash::check($currentPassword, $request->user()->password)) {
             return response()->json([
                 'message' => 'The current password is incorrect.',
             ], 422);
         }
 
         $request->user()->update([
-            'password' => Hash::make($validated['newPassword']),
+            'password' => Hash::make($newPassword),
         ]);
 
         return response()->json(['message' => 'Password updated successfully']);
