@@ -136,4 +136,25 @@ class UserController extends Controller
         return response()->json(['message' => 'Password updated successfully']);
     }
 
+    public function uploadPhoto(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|max:2048',
+        ]);
+
+        $user = $request->user();
+
+        $image = $request->file('image');
+        $filename = uniqid('avatar_') . '.' . $image->getClientOriginalExtension();
+        $path = $image->storeAs('avatars', $filename, 'public');
+
+        $user->image = $path;
+        $user->save();
+
+        return response()->json([
+            'message' => 'Profile photo updated successfully.',
+            'imagerl' => asset('storage/' . $path),
+            'user' => new UserResource($request->user()),
+        ]);
+    }
 }

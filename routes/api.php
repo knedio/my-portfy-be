@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/template', [TemplateController::class, 'getUserTemplate']);
     Route::post('/user/template', [UserController::class, 'updateTemplate']);
     Route::post('/user/update-password', [UserController::class, 'updatePassword']);
+    Route::post('/user/upload-photo', [UserController::class, 'uploadPhoto']);
 
     // portfolio
     Route::get('/portfolio', [PortfolioController::class, 'get']);
