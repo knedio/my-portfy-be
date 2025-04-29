@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Requests\User\UpdateProfileRequest;
 use App\Helpers\CryptoHelper;
+use Illuminate\Support\Facades\Log;
+
 
 class UserController extends Controller
 {
@@ -55,10 +58,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $validated = $request->validated();
-    
-        if (isset($validated['password'])) {
-            $validated['password'] = Hash::make($validated['password']);
-        }
     
         $user->update($validated);
     
@@ -154,6 +153,17 @@ class UserController extends Controller
         return response()->json([
             'message' => 'Profile photo updated successfully.',
             'imagerl' => asset('storage/' . $path),
+            'user' => new UserResource($request->user()),
+        ]);
+    }
+    
+    public function updateProfile(UpdateProfileRequest $request) {
+        $user = $request->user();
+
+        $user->update($request->only(['first_name', 'last_name', 'email', 'location', 'profession_id']));
+
+        return response()->json([
+            'message' => 'Updated profile successfully',
             'user' => new UserResource($request->user()),
         ]);
     }

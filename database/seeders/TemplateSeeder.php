@@ -15,15 +15,15 @@ class TemplateSeeder extends Seeder
     {
         Template::insert([
             [
-                'name' => 'Classic',
-                'description' => 'Clean, traditional layout.',
-                'preview_image' => 'templates/classic.png',
+                'name' => 'Nebula',
+                'description' => 'A modern cosmic-inspired portfolio with a smooth gradient background, bold typography, and a focus on simplicity and elegance.',
+                'preview_image' => 'templates/nebula.gif',
                 'default_data' => json_encode([])
             ],
-            [
-                'name' => 'Modern',
-                'description' => 'Sleek and minimalist.',
-                'preview_image' => 'templates/modern.png',
+             [
+                'name' => 'Aurora',
+                'description' => 'Vibrant and colorful layout.',
+                'preview_image' => 'templates/aurora.png',
                 'default_data' => json_encode([]),
             ],
         ]);

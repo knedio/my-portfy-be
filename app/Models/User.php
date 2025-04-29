@@ -25,7 +25,8 @@ class User extends Authenticatable
         'contact_email',
         'location',
         'about',
-        'banner'
+        'banner',
+        'profession_id',
     ];
 
     /**
@@ -69,6 +70,11 @@ class User extends Authenticatable
     public function skills()
     {
         return $this->hasMany(Skill::class);
+    }
+
+    public function profession()
+    {
+        return $this->belongsTo(Profession::class);
     }
 
 }

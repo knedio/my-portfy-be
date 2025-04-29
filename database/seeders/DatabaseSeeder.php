@@ -96,6 +96,7 @@ class DatabaseSeeder extends Seeder
     
         $this->call([
             TemplateSeeder::class,
+            ProfessionSeeder::class,
         ]);
     }
     

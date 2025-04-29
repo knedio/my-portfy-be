@@ -28,6 +28,8 @@ class UserResource extends JsonResource
             'contactEmail' => $this->contact_email,
             'location' => $this->location,
             'banner' => $this->banner,
+            'professionId' => $this->profession_id,
+            'profession' => $this->profession,
             'about' => [
                 'title' => $this->about['title'] ?? null,
                 'description' => $this->about['description'] ?? null,
