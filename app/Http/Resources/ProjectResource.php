@@ -21,6 +21,7 @@ class ProjectResource extends JsonResource
             'tech' => $this->tech,
             'image' => $this->image,
             'link' => $this->link,
+            'category' => $this->category,
         ];
     }
 }

@@ -31,7 +31,8 @@ class PortfolioController extends Controller
             'name' => $s['name'],
             'level' => $s['level'] ?? null,
             'experience' => $s['experience'] ?? null,
-            'icon' => $s['icon'] ?? null
+            'icon' => $s['icon'] ?? null,
+            'sub_skills' => $s['sub_skills'] ?? [],
         ], $request->input('skills', [])));
 
         return response()->json(['message' => 'Portfolio saved successfully']);

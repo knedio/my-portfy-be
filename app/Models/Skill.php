@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Skill extends Model
 {
-    protected $fillable = ['user_id', 'name', 'level', 'experience', 'icon'];
+    protected $fillable = ['user_id', 'name', 'level', 'experience', 'icon', 'sub_skills'];
+
+    protected $casts = [
+        'sub_skills' => 'array',
+    ];
+    
 
     public function user()
     {

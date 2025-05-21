@@ -16,6 +16,7 @@ class Project extends Model
         'tech',
         'image',
         'link',
+        'category',
     ];
 
     public function user()

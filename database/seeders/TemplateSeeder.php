@@ -20,10 +20,28 @@ class TemplateSeeder extends Seeder
                 'preview_image' => 'templates/nebula.gif',
                 'default_data' => json_encode([])
             ],
-             [
-                'name' => 'Aurora',
+            [
+                'name' => 'Mist',
                 'description' => 'Vibrant and colorful layout.',
-                'preview_image' => 'templates/aurora.png',
+                'preview_image' => 'templates/mist.gif',
+                'default_data' => json_encode([]),
+            ],
+            [
+                'name' => 'Lumina',
+                'description' => 'Vibrant and colorful layout.',
+                'preview_image' => 'templates/lumina.gif',
+                'default_data' => json_encode([]),
+            ],
+            [
+                'name' => 'Aether',
+                'description' => 'Vibrant and colorful layout.',
+                'preview_image' => 'templates/aether.gif',
+                'default_data' => json_encode([]),
+            ],
+            [
+                'name' => 'Orion',
+                'description' => 'Vibrant and colorful layout.',
+                'preview_image' => 'templates/orion.gif',
                 'default_data' => json_encode([]),
             ],
         ]);

@@ -20,6 +20,7 @@ class SkillResource extends JsonResource
             'level' => $this->level,
             'experience' => $this->experience,
             'icon' => $this->icon,
+            'subSkills' => $this->sub_skills,
         ];
     }
 }

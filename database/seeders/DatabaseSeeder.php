@@ -50,6 +50,7 @@ class DatabaseSeeder extends Seeder
                 'tech' => 'VueJS, Typescript, Tailwind',
                 'image' => 'https://picsum.photos/seed/1/800/600',
                 'link' => null,
+                'category' => null,
             ],
             [
                 'title' => 'Social Media Dashboard',
@@ -57,6 +58,7 @@ class DatabaseSeeder extends Seeder
                 'tech' => 'Node.js, Socket.io, MongoDB',
                 'image' => 'https://picsum.photos/seed/2/800/600',
                 'link' => null,
+                'category' => null,
             ],
             [
                 'title' => 'Task Management App',
@@ -64,6 +66,7 @@ class DatabaseSeeder extends Seeder
                 'tech' => 'React, Redux, Firebase',
                 'image' => 'https://picsum.photos/seed/3/800/600',
                 'link' => null,
+                'category' => null,
             ],
         ]);
     

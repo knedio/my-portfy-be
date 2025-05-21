@@ -41,12 +41,14 @@ class SavePortfolioRequest extends FormRequest
             'projects.*.tech' => 'required|string',
             'projects.*.image' => 'required|string',
             'projects.*.link' => 'nullable|url',
+            'projects.*.category' => 'nullable|string',
 
             'skills' => 'nullable|array',
             'skills.*.name' => 'required|string',
             'skills.*.level' => 'nullable|string',
             'skills.*.experience' => 'nullable|string',
             'skills.*.icon' => 'nullable|string',
+            'skills.*.sub_skills' => 'nullable|array',
         ];
     }
 
@@ -62,10 +64,10 @@ class SavePortfolioRequest extends FormRequest
                 'school', 'degree', 'yearFrom' => 'year_from', 'yearTo' => 'year_to',
             ]),
             'projects' => $this->transformCollection('projects', [
-                'title', 'description', 'tech', 'image', 'link',
+                'title', 'description', 'tech', 'image', 'link', 'category',
             ]),
             'skills' => $this->transformCollection('skills', [
-                'name', 'level', 'experience', 'icon',
+                'name', 'level', 'experience', 'icon', 'subSkills' => 'sub_skills',
             ]),
         ]);
     }
