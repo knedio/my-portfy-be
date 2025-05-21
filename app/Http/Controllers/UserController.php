@@ -160,7 +160,7 @@ class UserController extends Controller
     public function updateProfile(UpdateProfileRequest $request) {
         $user = $request->user();
 
-        $user->update($request->only(['first_name', 'last_name', 'email', 'location', 'profession_id']));
+        $user->update($request->only(['first_name', 'last_name', 'email', 'username', 'location', 'profession_id']));
 
         return response()->json([
             'message' => 'Updated profile successfully',

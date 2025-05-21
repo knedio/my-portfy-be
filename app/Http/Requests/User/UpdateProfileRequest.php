@@ -35,6 +35,13 @@ class UpdateProfileRequest extends FormRequest
                 'max:255',
                 Rule::unique('users', 'email')->ignore($this->user()->id),
             ],
+            'username' => [
+                'sometimes',
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('users', 'username')->ignore($this->user()->id),
+            ],
             'location' => 'nullable|string|max:255',
             'profession_id' => 'sometimes|nullable|exists:professions,id',
         ];
@@ -46,6 +53,7 @@ class UpdateProfileRequest extends FormRequest
             'first_name' => $this->input('firstName'),
             'last_name' => $this->input('lastName'),
             'email' => $this->input('email'),
+            'username' => $this->input('username'),
             'location' => $this->input('location'),
             'profession_id' => $this->input('professionId'),
         ]);

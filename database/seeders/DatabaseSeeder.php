@@ -9,6 +9,7 @@ use App\Models\Skill;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
+use App\Models\Template;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,13 +18,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            TemplateSeeder::class,
+            ProfessionSeeder::class,
+        ]);
+
+        $template = Template::first();
+
         $user = User::factory()->create([
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'knedio.info@gmail.com',
+            'username' => 'knedio.info',
             'password' => Hash::make('qwerty.123'),
             'contact_email' => 'knedio.info@gmail.com',
             'location' => 'w',
+            'template_id' => $template?->id,
             'about' => [
                 'title' => 'About Me',
                 'description' => "<p>I'm a passionate developer with a keen eye for design and a love for creating elegant solutions to complex problems. With expertise in modern web technologies, I bring ideas to life through clean code and intuitive interfaces.</p>\n<br />\n<p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical writing and mentoring.</p>",
@@ -95,11 +105,6 @@ class DatabaseSeeder extends Seeder
                 'experience' => '4+ years',
                 'icon' => 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01',
             ],
-        ]);
-    
-        $this->call([
-            TemplateSeeder::class,
-            ProfessionSeeder::class,
         ]);
     }
     
